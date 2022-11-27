@@ -1,46 +1,54 @@
-// https://jsonplaceholder.typicode.com/guide/
+let cells = ['', '', '', '', '', '', '', '', ''];
+let currentPlayer = 'X';
+let result = document.querySelector('.result');
+let btns = document.querySelectorAll('.btn');
+let conditions = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+];
 
-async function downloadPosts (page = 1) {
-  const postsURL = `https://jsonplaceholder.typicode.com/posts?_page=${page}`
-  const response = await fetch(postsURL)
-  const articles = await response.json()
-  return articles
-}
+const ticTacToe = (element, index) => {
+    element.value = currentPlayer;
+    element.disabled = true;
+    cells[index] = currentPlayer;
+    currentPlayer = currentPlayer == 'X' ? 'O' : 'X';
+    result.innerHTML = `Player ${currentPlayer} Turn`;
 
-async function downloadComments (postId) {
-  const commentsURL = `https://jsonplaceholder.typicode.com/posts/${postId}/comments`
-  const response = await fetch(commentsURL)
-  const comments = await response.json()
-  return comments
-}
+    for (let i = 0; i < conditions.length; i++) {
+        let condition = conditions[i];
+        let a = cells[condition[0]];
+        let b = cells[condition[1]];
+        let c = cells[condition[2]];
 
-async function getUserName (userId) {
-  const userURL = `https://jsonplaceholder.typicode.com/users/${userId}`
-  const response = await fetch(userURL)
-  const user = await response.json()
-  return user.name
-}
+        if (a == '' || b == '' || c == '') {
+            continue;
+        }
 
-function getArticleId (comments) {
-  const article = comments.previousElementSibling
-  const data = article.dataset
-  return data.postId
-}
-
-const details = document.getElementsByTagName('details')
-for (const detail of details) {
-  detail.addEventListener('toggle', async event => {
-    if (detail.open) {
-      const asides = detail.getElementsByTagName('aside')
-      const commentsWereDownloaded = asides.length > 0
-      if (!commentsWereDownloaded) {
-        const articleId = getArticleId(detail)
-        const comments = await downloadComments(articleId)
-        console.log(comments)
-      }
+        if ((a == b) && (b == c)) {
+            result.innerHTML = `Player ${a} Won `;
+            btns.forEach((btn) => btn.disabled = true);
+        }
     }
-  })
-}
+};
 
-const posts = await downloadPosts()
-console.log(posts)
+function reset() {
+    cells = ['', '', '', '', '', '', '', '', ''];
+    btns.forEach((btn) => {
+        btn.value = '';
+    });
+    currentPlayer = 'X';
+    result.innerHTML = `Player X Turn`;
+    btns.forEach((btn) => btn.disabled = false);
+};
+
+document.querySelector('#reset').addEventListener('click', reset);
+
+btns.forEach((btn, i) => {
+    btn.addEventListener('click', () => ticTacToe(btn, i));
+});
