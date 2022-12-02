@@ -5,5 +5,5 @@
 ### Group Members:  
     Kevin La 
     Kirsten Ochoa  
-    Janvi Panchal  
+    Jahnvi Panchal  
     Khang Tran  
