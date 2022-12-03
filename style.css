@@ -8,6 +8,7 @@
 html {
     height: 100%;
 }
+
 body {
 background-color: #8EC5FC;
 background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
@@ -49,6 +50,7 @@ height: 100%;
     justify-content: center;
     flex-direction: column;
     margin: 35px;
+    position: relative;
 }
 
 .row {
@@ -76,6 +78,69 @@ height: 100%;
 .btn:disabled {
     color: black;
     cursor: no-drop;
+}
+
+.strike {
+    background-color: red;
+    position: absolute;
+}
+
+.strike-r1 {
+    height: 5px;
+    width: 12%;
+    top: 15%;
+    left: 44%;
+}
+
+.strike-r2 {
+    height: 5px;
+    width: 12%;
+    top: 49%;
+    left: 44%;
+}
+
+.strike-r3 {
+    height: 5px;
+    width: 12%;
+    top: 82%;
+    left: 44%;
+}
+
+.strike-c1 {
+    height: 86%;
+    width: 5px;
+    top: 7%;
+    left: 44.8%;
+}
+
+.strike-c2 {
+    height: 86%;
+    width: 5px;
+    top: 7%;
+    left: 49.8%;
+}
+
+.strike-c3 {
+    height: 86%;
+    width: 5px;
+    top: 7%;
+    left: 54.9%;
+}
+
+.strike-dlr {
+    height: 6px;
+    width: 12%;
+    top: 49%;
+    left: 44%;
+    transform: skewY(45deg);
+}
+
+.strike-drl {
+    height: 6px;
+    width: 12%;
+    top: 49%;
+    left: 44%;
+    transform: skewY(-45deg);
 }
 
 .result {
