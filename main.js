@@ -14,11 +14,6 @@ let conditions = [
     [2, 4, 6]
 ];
 
-// const winnerwinnerchickendinner = [
-//     {counter: 0, strikeClass: "strike-row-1"},
-// ]
-
-
 const ticTacToe = (element, index) => {
     element.value = currentPlayer;
     element.disabled = true;
@@ -27,7 +22,6 @@ const ticTacToe = (element, index) => {
     result.innerHTML = `Player ${currentPlayer} Turn`;
 
     for (let i = 0; i < conditions.length; i++) {
-        // let {counter, strikeClass} = winnerwinnerchickendinner
         let condition = conditions[i];
         let a = cells[condition[0]];
         let b = cells[condition[1]];
